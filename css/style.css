@@ -10,7 +10,10 @@ nav {
     padding: 2rem;
 }
 
-
+.el-dialog__body{
+    padding: 0;
+    background-color: #f4f4f4;
+}
 .burger {
     cursor: pointer;
     width: 25px;
@@ -43,7 +46,9 @@ header {
     align-items: center;
     margin-bottom: 1rem;
 }
-
+.el-dialog__header{
+    background-color: #f4f4f4;
+}
 .mini-desc {
     font-style: inherit;
     font-weight: inherit;

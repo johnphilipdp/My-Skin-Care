@@ -14,193 +14,204 @@
 
 <body>
     <main id="app">
-        <nav>
-            <div class="dropdown">
-                <div class="dropdown-trigger">
-                    <div class="burger" aria-haspopup="true" aria-controls="dropdown-menu2">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+        <el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
 
-                </div>
-                <div class="dropdown-menu" id="dropdown-menu2" role="menu">
-                    <div class="dropdown-content">
-                        <div class="dropdown-item">
-                            <a href="#">Home</a>
+        <el-dialog :visible.sync="dialogVisible">
+            <nav>
+                <div class="dropdown">
+                    <div class="dropdown-trigger">
+                        <div class="burger" aria-haspopup="true" aria-controls="dropdown-menu2" @click="opnNav">
+                            <div></div>
+                            <div></div>
+                            <div></div>
                         </div>
-                        <hr class="dropdown-divider">
-                        <div class="dropdown-item">
-                            <p>About</p>
-                        </div>
-                        <hr class="dropdown-divider">
-                        <div class="dropdown-item">
-                            <p>Contact</p>
-                        </div>
+
                     </div>
-                </div>
-            </div>
-        </nav>
-        <header>
-            <img src="./images/logo.png" alt="">
-            <span class="mini-desc">
-                Capture. Answer. See Results
-            </span>
-        </header>
-        <div class="module">
-            <template v-if="page === 1">
-                <div class="overview">
-                    <div class="columns">
-                        <div class="column temp">
-                            <div>
-                                <img src="images/temp.png" alt="">
-                                <div class="temp-inner">
-                                    <span>Temperature</span>
-                                    <h2>30 °C</h2>
-                                    <span>Very Hot</span>
-                                </div>
+                    <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                        <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                <a href="#">Home</a>
                             </div>
-                            <div class="temp-temp">
-                                <div class="temp-temp--cold">
-                                    <img src="images/col.png" alt="">
-                                    <span class="label">25 °C</span>
-                                </div>
-                                <div class="divider">
-
-                                </div>
-                                <div class="temp-temp--cold">
-                                    <img src="images/hot.png" alt="">
-                                    <span class="label">35 °C</span>
-                                </div>
+                            <hr class="dropdown-divider">
+                            <div class="dropdown-item">
+                                <p>About</p>
+                            </div>
+                            <hr class="dropdown-divider">
+                            <div class="dropdown-item">
+                                <p>Contact</p>
                             </div>
                         </div>
                     </div>
-                    <div class="columns">
-                        <div class="column is-4">
-                            <span class="label">
-                                <img src="images/loc.png" alt="">
-                                Location
-                            </span>
-                            <h2>California</h2>
+                </div>
+            </nav>
+            <header>
+                <img src="./images/logo.png" alt="">
+                <span class="mini-desc">
+                    Capture. Answer. See Results
+                </span>
+            </header>
+            <div class="module">
+                <template v-if="page === 1">
+                    <div class="overview">
+                        <div class="columns">
+                            <div class="column temp">
+                                <div>
+                                    <img src="images/temp.png" alt="">
+                                    <div class="temp-inner">
+                                        <span>Temperature</span>
+                                        <h2>30 °C</h2>
+                                        <span>Very Hot</span>
+                                    </div>
+                                </div>
+                                <div class="temp-temp">
+                                    <div class="temp-temp--cold">
+                                        <img src="images/col.png" alt="">
+                                        <span class="label">25 °C</span>
+                                    </div>
+                                    <div class="divider">
+
+                                    </div>
+                                    <div class="temp-temp--cold">
+                                        <img src="images/hot.png" alt="">
+                                        <span class="label">35 °C</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="column is-8">
-                            <span class="label">
-                                <img src="images/uv.png" alt="">
-                                <h2>11</h2>
-                                <span class="label-unit">(0+)</span>
-                            </span>
-                            <div>
-                                <span class="label-unit">apply</span>
+                        <div class="columns">
+                            <div class="column is-4">
+                                <span class="label">
+                                    <img src="images/loc.png" alt="">
+                                    Location
+                                </span>
+                                <h2>California</h2>
+                            </div>
+                            <div class="column is-8">
+                                <span class="label">
+                                    <img src="images/uv.png" alt="">
+                                    <h2>11</h2>
+                                    <span class="label-unit">(0+)</span>
+                                </span>
+                                <div>
+                                    <span class="label-unit">apply</span>
+                                    <h4>
+                                        SPF50~
+                                        PA++
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-8">
+                                <h2>Oil Care</h2>
+                            </div>
+                            <div class="column is-4">
+                                <div class="humid">
+                                    <div>
+                                        <img src="images/drop.png" alt="">
+                                        <span class="label">Humidity</span>
+                                    </div>
+                                    <div>
+                                        <h2>62%</h2>
+                                        <span class="label-unit">(22% +)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="button analyze" @click="nextPage">
+                            Analyze
+                        </div>
+                    </div>
+                </template>
+                <template v-if="page === 2">
+                    <div class="guideline">
+                        <div class="page-btns">
+                            <i @click="prev" class="el-icon-arrow-left" :class="{inactive: phase === 1}"></i>
+                            <i @click="next" class="el-icon-arrow-right" :class="{inactive: phase === 3}"></i>
+                        </div>
+                        <div class="guideline-content">
+                            <template v-if="phase === 1">
+                                <img src="images/preview.png" alt="">
+
+                                <ul class="guide-list">
+                                    <li><span>Distance - </span>
+                                        Adjust phone distance to get correct angler. center of face.
+                                    </li>
+                                    <li><span>Guideline - </span>
+                                        Place your face inside the guidelines
+                                    </li>
+                                    <li><span>Direction - </span>
+                                        look on the camera while tkaing selfie.
+                                    </li>
+                                    <li><span>Resolution - </span>
+                                        User camera with resolution of at least 2 megabytes.
+                                    </li>
+                                    <li><span>Lighting - </span>
+                                        Use a decent lighting to brighten your face for selfie.
+                                    </li>
+                                </ul>
+                                <h2>
+                                    Capture Picture with Selfie
+                                </h2>
                                 <h4>
-                                    SPF50~
-                                    PA++
+                                    Take a snap
                                 </h4>
-                            </div>
+                            </template>
+                            <template v-if="phase === 2">
+
+                                <img src="images/preview-quest.png" alt="">
+                                <h2>
+                                    Tell us Something about yourself
+                                </h2>
+                                <h4>
+                                    Skin Health Questionnaire
+                                </h4>
+                            </template>
+                            <template v-if="phase === 3">
+                                <img src="images/preview-result.png" alt="">
+                                <h2>
+                                    See your results
+                                </h2>
+                                <h4>
+                                    Skin Analysis
+                                </h4>
+                            </template>
+                        </div>
+                        <div class="page-dots">
+                            <div v-bind:class="{ active: phase === 1 }"></div>
+                            <div v-bind:class="{ active: phase === 2 }"></div>
+                            <div v-bind:class="{ active: phase === 3 }"></div>
                         </div>
                     </div>
-                    <div class="columns">
-                        <div class="column is-8">
-                            <h2>Oil Care</h2>
-                        </div>
-                        <div class="column is-4">
-                            <div class="humid">
-                                <div>
-                                    <img src="images/drop.png" alt="">
-                                    <span class="label">Humidity</span>
-                                </div>
-                                <div>
-                                    <h2>62%</h2>
-                                    <span class="label-unit">(22% +)</span>
-                                </div>
-                            </div>
+
+                    <div class="button analyze" @click="openCam" style="width: 50%">
+                        Get Started
+                    </div>
+                </template>
+                <template v-if="page === 3">
+                    <div class="video-content">
+
+                        <div class="video-content--inner">
+                            <div class="face-shape hide"></div>
+                            <video id="videoElement" autoplay="true">
+                            </video>
                         </div>
                     </div>
 
-                    <div class="button analyze" @click="nextPage">
-                        Analyze
+                    <div class="button analyze" @click="openCam" style="width: 50%">
+                        Capture
                     </div>
-                </div>
-            </template>
-            <template v-if="page === 2">
-                <div class="guideline">
-                    <div class="page-btns">
-                        <i @click="prev" class="el-icon-arrow-left" :class="{inactive: phase === 1}"></i>
-                        <i @click="next" class="el-icon-arrow-right" :class="{inactive: phase === 3}"></i>
-                    </div>
-                    <div class="guideline-content">
-                        <template v-if="phase === 1">
-                            <img src="images/preview.png" alt="">
+                </template>
+            </div>
 
-                            <ul class="guide-list">
-                                <li><span>Distance - </span>
-                                    Adjust phone distance to get correct angler. center of face.
-                                </li>
-                                <li><span>Guideline - </span>
-                                    Place your face inside the guidelines
-                                </li>
-                                <li><span>Direction - </span>
-                                    look on the camera while tkaing selfie.
-                                </li>
-                                <li><span>Resolution - </span>
-                                    User camera with resolution of at least 2 megabytes.
-                                </li>
-                                <li><span>Lighting - </span>
-                                    Use a decent lighting to brighten your face for selfie.
-                                </li>
-                            </ul>
-                            <h2>
-                                Capture Picture with Selfie
-                            </h2>
-                            <h4>
-                                Take a snap
-                            </h4>
-                        </template>
-                        <template v-if="phase === 2">
+            <footer>
+                <img src="images/chowis.png" alt="">
+            </footer>
 
-                            <img src="images/preview-quest.png" alt="">
-                            <h2>
-                                Tell us Something about yourself
-                            </h2>
-                            <h4>
-                                Skin Health Questionnaire
-                            </h4>
-                        </template>
-                        <template v-if="phase === 3">
-                            <img src="images/preview-result.png" alt="">
-                            <h2>
-                                See your results
-                            </h2>
-                            <h4>
-                                Skin Analysis
-                            </h4>
-                        </template>
-                    </div>
-                    <div class="page-dots">
-                        <div v-bind:class="{ active: phase === 1 }"></div>
-                        <div v-bind:class="{ active: phase === 2 }"></div>
-                        <div v-bind:class="{ active: phase === 3 }"></div>
-                    </div>
-                </div>
+        </el-dialog>
 
-                <div class="button analyze" @click="openCam" style="width: 50%">
-                    Get Started
-                </div>
-            </template>
-            <template v-if="page === 3">
-                <div class="video-content">
 
-                    <div class="video-content--inner">
-                        <div class="face-shape hide"></div>
-                        <video id="videoElement" autoplay="true">
-                        </video>
-                    </div>
-                </div>
-
-                <div class="button analyze" @click="openCam" style="width: 50%">
-                    Capture
-                </div>
-            </template>
-        </div>
         <!-- <div class="modal">
             <div class="modal-background"></div>
             
@@ -208,13 +219,64 @@
         </div> -->
 
     </main>
-    <footer>
-        <img src="images/chowis.png" alt="">
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script src="node_modules/vue-cam-vision/dist/index.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <script src="js/dist/bundle.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                page: 1,
+                phase: 1,
+                onMenu: false,
+                dialogVisible: false
+            },
+            methods: {
+                opnNav() {
+                    document.querySelector('.dropdown').classList.toggle('is-active');
+                },
+                nextPage() {
+                    this.page += 1;
+                },
+                prev() {
+                    if (this.phase !== 1) {
+                        this.phase -= 1;
+                    }
+                },
+                next() {
+                    if (this.phase !== 3) {
+                        this.phase += 1;
+                    }
+                },
+                openCam() {
+                    this.page = 3;
+                    setTimeout(() => {
+                        const video = document.querySelector('#videoElement');
+                        var localStream;
+                        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+                        if (navigator.getUserMedia) {
+                            navigator.getUserMedia({ video: true },
+                                function (stream) {
+                                    localStream = stream;
+                                    video.srcObject = localStream;
+
+                                    document.querySelector('.face-shape').classList.remove('hide');
+                                }
+                                , videoError);
+                        }
+                        function videoError(e) {
+                            console.log(e);
+                        }
+                    }, 500)
+                }
+            },
+            mounted() {
+            }
+        })
+
+
+
+    </script>
 </body>
 
 </html>

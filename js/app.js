@@ -3,7 +3,8 @@ new Vue({
     data: {
         page: 1,
         phase: 1,
-        onMenu: false
+        onMenu: false,
+        dialogVisible: false
     },
     methods: {
         nextPage() {
